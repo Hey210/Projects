@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --badge-bg: #e0e7ff;
+            --badge-color: #4f46e5;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 0.8s ease both;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+        .project-card:nth-child(9) { animation-delay: 0.9s; }
+        .project-card:nth-child(10) { animation-delay: 1s; }
+        .project-card:nth-child(11) { animation-delay: 1.1s; }
+        
+        .project-card__image {
+            height: 160px;
+            width: 100%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card__image::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.3));
+            top: -25%;
+            left: -25%;
+            transform: rotate(-45deg);
+        }
+        
+        .project-card__content {
+            padding: 1.5rem;
+        }
+        
+        .project-card__title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .project-card__description {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-card__link {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .project-card__link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .project-card__link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .project-card__link:hover::after {
+            width: 100%;
+        }
+        
+        .project-card__badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: var(--badge-bg);
+            color: var(--badge-color);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .project-card__date {
+            position: left;
+            top: 102px;
+            left: 102px;
+            background-color: red;
+            color: white;
+            width: 100px;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .status-stable {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-unstable {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+        
+        .status-unofficial {
+            background-color: #f3e8ff;
+            color: #7e22ce;
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--text-light), transparent);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Project Portfolio</h1>
+            <p>A collection of interactive web applications demonstrating various programming skills and concepts, all projects all open source feel free to modify or </p>
+            <br><div class="open-source-badge">
+                <i class="fas fa-code-branch"></i> Open Source
+            </div>
+            <p class="open-source-note">All projects are open source. Feel free to modify, improve, or use the code for your own projects!</p>
+        </header>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                
+               
+                <div class="project-card__image">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div class="project-card__content">
+                    <div class="status-badge status-stable">Stable</div><div class="project-card__date">Nov 10, 2024</div>
+                <div
+                    <h2 class="project-card__title">Weather Radar</h2>
+                    <p class="project-card__description">An interactive weather application that displays real-time weather data and forecasts</p>
+                    <a href="https://hey210.github.io/PH/weather_radar.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                
+               
+                <div class="project-card__image">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="project-card__content">
+                    <div class="status-badge status-stable">Stable</div><div class="project-card__date">Aug 5, 2024</div>
+                <div
+                    <h2 class="project-card__title">Age Calculator</h2>
+                    <p class="project-card__description">Calculate exact age based on birthdate, providing years, months, and days with a clean, user-friendly interface.</p>
+                    <a href="https://hey210.github.io/Age-calculator-/AGECALCU2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                
+                
+                <div class="project-card__image">
+                    <i class="fas fa-square-root-alt"></i>
+                </div>
+                <div class="project-card__content">
+                    <div class="status-badge status-unstable">Unstable</div><div class="project-card__date">Aug 17, 2024</div>
+                <div
+                    <h2 class="project-card__title">Math Challenge</h2>
+                    <p class="project-card__description">Test and improve your math skills with timed challenges covering various operations and difficulty levels.</p>
+                    <a href="https://hey210.github.io/Math/MATH2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                
+                <div class="project-card__image">
+                    <i class="fas fa-sticky-note"></i>
+                </div><div class="status-badge status-stable">Stable</div><div class="project-card__date">Aug 17, 2024</div>
+                <div
+                <div class="project-card__content">
+                    <h2 class="project-card__title">Notes App</h2>
+                    <p class="project-card__description">A simple yet powerful note-taking application with local storage functionality to save and organize your thoughts.</p>
+                    <a href="https://hey210.github.io/Notes/notes2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-file-alt"></i>
+                </div><div class="status-badge status-stable">Stable</div><div class="project-card__date">Aug 6, 2024</div>
+                <div
+                <div class="project-card__content">
+                    <h2 class="project-card__title">Text Analysis</h2>
+                    <p class="project-card__description">Analyze text to count words, characters, and provide readability metrics with a clean visual presentation.</p>
+                    <a href="https://hey210.github.io/Text-analysis-/textanalysis2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-stopwatch"></i>
+                </div><div class="status-badge status-unofficial">Unofficial</div><div class="project-card__date">Aug 17, 2024</div>
+                <div
+                <div class="project-card__content">
+                    <h2 class="project-card__title">Timer</h2>
+                    <p class="project-card__description">A versatile timer application with countdown, stopwatch, and alarm functionalities in an easy-to-use interface.</p>
+                    <a href="https://hey210.github.io/Timer/timer2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="project-card__content"><div class="status-badge status-stable">Stable</div><div class="project-card__date">Aug 3, 2024</div>
+                <div
+                    <h2 class="project-card__title">Number Guessing</h2>
+                    <p class="project-card__description">An interactive game where players guess a randomly generated number with hints and score tracking.</p>
+                    <a href="https://hey210.github.io/Number-guessing/numberguess2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="status-badge status-stable">Stable</div> <div class="project-card__date">Jul 31, 2024</div>
+                <div
+                <div class="project-card__content">
+                    <h2 class="project-card__title">Calculator</h2>
+                    <p class="project-card__description">A full-featured calculator with standard arithmetic operations plus memory functions and history tracking.</p>
+                    <a href="https://hey210.github.io/Calculator/calculator2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-binary"></i>
+                </div>
+                <div class="project-card__content"><div class="status-badge status-stable">Stable</div><div class="project-card__date">Jul 29, 2024</div>
+                <div
+                    <h2 class="project-card__title">Binary Converter</h2>
+                    <p class="project-card__description">Convert between binary, decimal, hexadecimal, and octal number systems with educational explanations.</p>
+                    <a href="https://hey210.github.io/Binary/binary2025.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="project-card__content"><div class="status-badge status-unofficial">Unofficial</div><div class="project-card__date">Nov 23, 2024</div>
+                <div
+                    <h2 class="project-card__title">Password Generator</h2>
+                    <p class="project-card__description">Create secure, customizable passwords with options for length, character types, and complexity requirements.</p>
+                    <a href="https://hey210.github.io/Password-generator/passwordgenerator.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-card__badge"></div>
+                <div class="project-card__image">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="project-card__content"><div class="status-badge status-unofficial">Unofficial</div><div class="project-card__date">Aug 6, 2024</div>
+                <div
+                    <h2 class="project-card__title">Unit Converter</h2>
+                    <p class="project-card__description">Convert between different units of measurement including length, weight, volume, and temperature with precise calculations.</p>
+                    <a href="https://hey210.github.io/Unit-conversation/tools.html" class="project-card__link">View Project <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="social-links">
+                <a href="hey201.github.com"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="kael.official20@gmail.com"><i class="far fa-envelope"></i></a>
+            </div>
+            <p>Projects . All rights reserved.</p>
+            <p>Designed and developed with <strong>norwell</strong> <i class="fas fa-heart" style="color: #e31b23;"></i></p>
+        </footer>
+    </div>
+</body>
+</html>
